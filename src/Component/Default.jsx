@@ -11,8 +11,8 @@ function Default() {
           </div>
         </div>
         <div className="col-span-12 flex justify-center z-0">
-          <div className="w-11/12 md:w-10/12">
-          <Outlet></Outlet>
+          <div className="w-11/12 md:w-10/12 p-2 md:p-5">
+            <Outlet></Outlet>
           </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ function Menubar() {
     <div className="sticky top-0  md:col-start-2 md:col-span-10 py-3 bg-base-100 z-10">
         <div 
             className="w-full bg-base-300 p-2 rounded-md grid grid-cols-12 py-5">
-                <div className="col-span-2 text-2xl font-black">JPA</div>
+                <div className="col-span-2 text-2xl font-black px-5">JPA</div>
                 <div className="col-span-8 flex justify-center gap-3">
                     {
                         menuItems.map((item,i)=>{

@@ -24,7 +24,7 @@ function Menubar() {
                     }
                     
                     <Link to={'/'} className={`${currentPage === 'home' && 'text-base-300 bg-base-content' } flex md:hidden p-1 transition duration-300 hover:scale-110 rounded cursor-pointer`} onClick={()=>{setCurrentPage('home')}}><HomeIcon className='w-6'></HomeIcon></Link>
-                    <Link to={'/project'} className={`${currentPage === 'project' && 'text-base-300 bg-base-content' } flex md:hidden p-1 transition duration-300 hover:scale-110 rounded cursor-pointer`} onClick={()=>{setCurrentPage('project')}}><CodeBracketIcon className='w-6'></CodeBracketIcon></Link>
+                    <Link to={'/projects'} className={`${currentPage === 'project' && 'text-base-300 bg-base-content' } flex md:hidden p-1 transition duration-300 hover:scale-110 rounded cursor-pointer`} onClick={()=>{setCurrentPage('project')}}><CodeBracketIcon className='w-6'></CodeBracketIcon></Link>
                     <Link to={'/contact'} className={`${currentPage === 'contact' && 'text-base-300 bg-base-content' } flex md:hidden p-1 transition duration-300 hover:scale-110 rounded cursor-pointer`} onClick={()=>{setCurrentPage('contact')}}><EnvelopeIcon className='w-6'></EnvelopeIcon></Link>
                 </div>
         </div>

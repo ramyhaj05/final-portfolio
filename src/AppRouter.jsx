@@ -10,7 +10,7 @@ function AppRouter() {
     <Routes>
         <Route path="/" element={<Default></Default>}> 
             <Route index element={<Home/>}></Route>
-            <Route path="/project" element={<Project/>}></Route>
+            <Route path="/projects" element={<Project/>}></Route>
             <Route path="/contact" element={<Contact/>}></Route>
         </Route>
     </Routes>

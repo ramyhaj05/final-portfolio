@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Menubar() {
     const menuItems =[
         {name:'home', link: '/'},
-        {name:'project', link: '/project'},
+        {name:'projects', link: '/projects'},
         {name:'contact', link: '/contact'},
     ]
     const [currentPage, setCurrentPage] = useState('home')

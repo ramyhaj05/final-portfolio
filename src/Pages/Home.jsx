@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import FloatingBackground from '../Utilities/FloatingBackground'
 import TypingEffect from '../Utilities/TypingEffect'
 import HorizontalScrollCarousel from '../Component/HorizontalCarousel'
 import Cards from '../Utilities/Cards'
+import ModalProject from '../Utilities/ModalProject'
+import { Link } from 'react-router-dom'
 function Home() {
 
     const contactIcon =[
@@ -28,20 +30,35 @@ function Home() {
     ]
     const adv =[
         {id:1, name:'Building Fast, Responsive Websites for the Modern Web', image: '/images/Home/ads/responsive-fast.png', delay:.4},
-        {id:1, name:'Turning Ideas into Impactful Digital Experiences', image: '/images/Home/ads/ideas-solution.png', delay:.4},
-        {id:1, name:'Expert Web Development That Elevates Your Brand', image: '/images/Home/ads/brand.png', delay:.4},
-        {id:1, name:'Crafting Cutting-Edge Websites That Drive Results', image: '/images/Home/ads/making-website.png', delay:.4},
-        {id:1, name:'Transforming Visions into Seamless Online Solutions', image: '/images/Home/ads/vision.png', delay:.4},
+        {id:2, name:'Turning Ideas into Impactful Digital Experiences', image: '/images/Home/ads/ideas-solution.png', delay:.4},
+        {id:3, name:'Expert Web Development That Elevates Your Brand', image: '/images/Home/ads/brand.png', delay:.4},
+        {id:4, name:'Crafting Cutting-Edge Websites That Drive Results', image: '/images/Home/ads/making-website.png', delay:.4},
+        {id:5, name:'Transforming Visions into Seamless Online Solutions', image: '/images/Home/ads/vision.png', delay:.4},
+    ]
+
+    const projectList = [
+        {id:1, name:'Project Name 1', image:'/images/Home/ads/responsive-fast.png', delay:.4, link:'#'},
+        {id:2, name:'Project Name 2', image:'/images/Home/ads/responsive-fast.png', delay:.4, link:'#'},
+        {id:3, name:'Project Name 3', image:'/images/Home/ads/responsive-fast.png', delay:.4, link:'#'},
+        {id:4, name:'Project Name 4', image:'/images/Home/ads/responsive-fast.png', delay:.4, link:'#'},
+        {id:5, name:'Project Name 5', image:'/images/Home/ads/responsive-fast.png', delay:.4, link:'#'},
     ]
     let newDate = new Date()
     let currentYear = newDate.getFullYear();
     const ref = useRef(null);
+    const [showProject, setShowProject] = useState({
+        show:false,
+        id:0,
+    })
+    const [currentData, setCurrentData] = useState({})
     // useEffect(()=>{
     //     window.scrollTo(0, 0);
     // },[])
   return (
     <>
         <div className="md:grid gap-10 md:col-start-2 md:col-span-10">
+            
+            <ModalProject setData={setShowProject} data={showProject} project={projectList[showProject.id -1]}></ModalProject>
             <div className="h-[80vh] flex flex-wrap justify-center items-center z-0">
                 <FloatingBackground />
                 <div className="flex flex-cols-1 flex-wrap justify-center z-10">
@@ -117,12 +134,12 @@ function Home() {
                     </motion.div>
                     {/* <RevealLinks></RevealLinks> */}
                     {/* <Example></Example> */}
-                    <div className="grid grid-cols-5 lg:grid-cols-8 xl:grid-cols-8 md:grid-cols-6  justify-center gap-5 md:gap-10 flex-wrap items-center p-5 px-7 mt-10">
+                    <div className="flex flex-wrap  justify-center gap-5 md:gap-10 flex-wrap items-center p-5 px-7 mt-10">
                         {skills.map((item,i)=>{
                             return (
-                                <div className="grid justify-center items-center md:gap-1 gap-5">
-                                    <div className="w-full flex justify-center"><img src={item.image} alt={item.name} className='w-12 md:w-20 object-cover p-2 bg-white rounded-md'/></div>
-                                    <div className="text-center font-bold  tracking-widest text-xs md:text-lg">{item.name}</div>
+                                <div className="grid justify-center items-center md:gap-1 gap-2 md:gap-5 cursor-pointer hover:scale-110 w-18" key={i} title={item.name}>
+                                    <div className="w-full flex justify-center"><img src={item.image} alt={item.name} className='w-16 md:w-20 object-cover p-2 bg-gradient-to-br from-primary via-base-300 to-base-200 border-2 rounded-md shadow-xl shadow-black'/></div>
+                                    <div className="text-center font-bold  tracking-widest text-xs md:text-lg text-clip md:pt-2">{item.name}</div>
                                 </div>
                             )
                         })}
@@ -139,30 +156,37 @@ function Home() {
                 <div className="text-2xl font-black tracking-widest">Recent Projects</div>
                 <div className="flex justify-center pt-10">
                     <div className="w-full md:w-10/12 grid grid-cols-2 gap-5">
-                        <Cards></Cards>
+                        <Cards project={projectList[0]} setShowProject={setShowProject} showProject={showProject}></Cards>
                         <div className="grid grid-cols-2 gap-5">
-                            <Cards></Cards>
-                            <Cards></Cards>
-                            <Cards></Cards>
-                            <Cards></Cards>
+                            {projectList.map((item, i)=>{
+                                if(item.id > 1){
+                                    return (
+                                        <Cards project={item} key={i} setShowProject={setShowProject} showProject={showProject}></Cards>
+                                    )
+                                }
+                            })}
                         </div>
                         <div className="col-span-2 p-2 flex justify-end">
-                            <div className=" bg-base-300 tracking-widest font-bold p-2 px-3 rounded-md">See more</div>
+                            <Link to={'/projects'} className=" bg-base-300 tracking-widest font-bold p-2 px-3 rounded-md cursor-pointer transition duration-300 hover:scale-110 hover:text-primary">See more</Link>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div className="pt-16 md:pt-32">
                 <div className="tracking-widest text-2xl font-black">About me</div>
             </div>
-            <div className="grid md:grid-cols-2 gap-10 md:p-5 p-2 align-center justify-center">
+            <div className="grid md:grid-cols-3 gap-10 md:p-5 p-2 align-center justify-center">
                 <img src='/images/Home/profile.png' className='w-full h-72 md:h-96 object-cover grayscale rounded-xl'></img>
-                <div className="p-2 md:p-5 tracking-widest text-justify place-self-center grid gap-5 md:gap-10">
-                    <div className="">
+                <div className="p-2 md:p-5 tracking-widest  place-self-center grid gap-5 md:gap-10 md:col-span-2">
+                    <div className="flex">
                         <b className='font-black text-4xl md:text-5xl'><span className=''>I am</span> Jaymar,</b> 
                     </div>
-                    <div className="">
+                    <div className="text-justify">
                         a graduate of <b>B.S. in Information Technology</b> from STI Santa Rosa in 2016. I have worked as a computer programmer on a variety of projects, including <b>UMPI (formerly Nissan Philippines)</b> revising and upgrading their Payroll system and the <b>Business Permit and Licensing Office at the City Government of Santa Rosa</b>, where I also contributed as a website developer and develop their in-house system connecting many offices.
+                    </div>
+                    <div className="text-justify">
+                    I specialize in creating sleek, responsive websites using technologies like HTML, CSS, JavaScript, ReactJS, PHP, TailwindCSS, Framer Motion and DaisyUI. My focus is on crafting intuitive, user-centered designs that are not only aesthetically pleasing but also optimized for performance. I am continuously exploring new trends and techniques to keep delivering innovative solutions.
                     </div>
                 </div>
             </div>

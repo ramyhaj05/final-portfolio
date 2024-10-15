@@ -17,12 +17,11 @@ const HorizontalScrollCarousel = ({adv}) => {
       <FloatingCodes></FloatingCodes>
       <div className="sticky top-52 md:top-0 flex h-[70vh] md:h-[100vh] w-full md:w-full items-center overflow-hidden">
         <motion.div style={{ x }} className="grid md:grid-cols-3 gap-2 md:items-center">
-            <Card card={adv} ref={ref} />
+            <Card card={adv} />
             <motion.div 
                 initial={{opacity:0, x:200, scale:.5}}
                 whileInView={{y:0, x:0, opacity:1, scale:1, transition:{duration:.5, delay:.7}}}
                 viewport={{once: false}}
-                ref={ref}
                 className="md:col-span-2 lg:pl-44 md:pl-32 sm:text-xl md:text-2xl xl:text-7xl font-bold tracking-widest md:text-left text-center grid justify-center items-center md:px-5">{adv.name}</motion.div>
         </motion.div>
       </div>

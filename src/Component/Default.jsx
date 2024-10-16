@@ -1,6 +1,7 @@
 import React from 'react'
 import Menubar from './Menubar'
 import { Outlet } from 'react-router-dom'
+import Footer from './Footer'
 
 function Default() {
   return (
@@ -15,6 +16,12 @@ function Default() {
             <Outlet></Outlet>
           </div>
         </div>
+        <div className="col-span-12 sticky top-0 flex justify-center z-20 relative bg-base-100">
+          <div className="w-11/12 md:w-10/12">
+            <Footer/>
+          </div>
+        </div>
+
     </div>
   )
 }

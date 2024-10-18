@@ -101,13 +101,14 @@ function Home() {
                         {
                             contactIcon.map((item, i)=>{
                                 return(
-                                    <motion.div key={i}
+                                    <motion.a key={i}
                                         initial={{opacity:0, y:50}}
                                         whileInView={{y:0, x:0, opacity:1, transition:{duration:.5, delay:item.delay}}}
                                         viewport={{once: false}}
-                                        className="text-base-300 rounded-md grid justify-center items-center gap-1">
+                                        href='#1'
+                                        className="text-base-300 rounded-md grid justify-center items-center gap-1 transition duration-300 hover:scale-105">
                                             <img className='place-self-center w-16 p-2 bg-base-content rounded-full object-cover border-4 ring-2 ring-primary border-black' src={item.image} alt={item.name}></img>
-                                        </motion.div>
+                                        </motion.a>
                                 )
                             })
                         }

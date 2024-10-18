@@ -2,17 +2,16 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { CodeBracketIcon, EnvelopeIcon, HomeIcon } from '@heroicons/react/16/solid'
 import { Link } from 'react-router-dom'
-function Menubar() {
+function Menubar({currentPage, setCurrentPage}) {
     const menuItems =[
         {name:'home', link: '/'},
         {name:'projects', link: '/projects'},
         {name:'contact', link: '/contact'},
     ]
-    const [currentPage, setCurrentPage] = useState('home')
   return (
-    <div className="sticky top-0  md:col-start-2 md:col-span-10 py-3 bg-base-100 z-10">
+    <div className="sticky top-0  col-span-12 bg-base-100 z-10 shadow-xl border-b-2 border-base-300/70">
         <div 
-            className="w-full bg-base-300 p-2 rounded-md grid grid-cols-12 py-5">
+            className="w-full bg-base-300 p-2 grid grid-cols-12 py-5">
                 <div className="col-span-2 text-2xl font-black px-5">JPA</div>
                 <div className="col-span-8 flex justify-center gap-3">
                     {
